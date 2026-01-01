@@ -1,0 +1,22 @@
+services:
+  windows:
+    image: dockurr/windows
+    container_name: windows
+    environment:
+      VERSION: "https://www.mediafire.com/file/smwzrjuwq0j7eo0/Windows+11+Powerless+Edition.iso"
+      DISK_SIZE: 230G
+      CPU_CORES: 8
+      RAM_SIZE: 12G
+    devices:
+      - /dev/kvm
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 8006:8006
+      - 3389:3389/tcp
+      - 3389:3389/udp
+    volumes:
+      - ./windows:/storage
+    restart: always
+    stop_grace_period: 2m
